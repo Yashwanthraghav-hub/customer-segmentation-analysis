@@ -1,0 +1,2 @@
+import { useEffect, useState } from 'react';
+export function useAsync<T>(run: () => Promise<T>, deps: unknown[] = []) { const [data,setData]=useState<T>(); const [error,setError]=useState<Error>(); const [loading,setLoading]=useState(true); const retry=()=>{setLoading(true);setError(undefined);run().then(setData).catch(setError).finally(()=>setLoading(false));}; useEffect(retry, deps); return { data,error,loading,retry }; }

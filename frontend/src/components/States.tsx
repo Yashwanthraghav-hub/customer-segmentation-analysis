@@ -1,0 +1,4 @@
+import { AlertCircle, DatabaseZap, LoaderCircle } from 'lucide-react';
+export function LoadingState(){return <div className="state"><LoaderCircle className="spin" size={26}/><span>Preparing your analysis…</span></div>}
+export function ErrorState({message,retry}:{message:string;retry?:()=>void}){return <div className="state error"><AlertCircle size={26}/><div><strong>Couldn’t load this view</strong><p>{message}</p>{retry&&<button className="text-button" onClick={retry}>Try again</button>}</div></div>}
+export function EmptyState({title='No analysis yet',body='Upload a customer file to turn activity into actionable segments.'}:{title?:string;body?:string}){return <div className="empty"><DatabaseZap size={34}/><h2>{title}</h2><p>{body}</p><a className="button primary" href="/upload">Upload customer data</a></div>}
